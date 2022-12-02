@@ -18,27 +18,34 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.*;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import org.ics.service.JWTService;
 import org.ics.utils.python.CheckPassword;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.lang.model.element.NestingKind;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 
 @SpringBootApplication
+@EnableTransactionManagement
+@MapperScan("org.ics.dao")
 public class IntelligentCloudServiceApplication
 {
 
     public static void main(String[] args) throws ModelNotFoundException, MalformedModelException, IOException, TranslateException, InterruptedException
     {
         SpringApplication.run(IntelligentCloudServiceApplication.class, args);
-
-        String param = "C:/Users/chenzhen/Desktop/CODING/pythonProject/dev/00000000.png";
-        String[] command = new String[]{"C:\\Users\\chenzhen\\anaconda3\\envs\\pytouch\\python.exe", "src/main/resources/org/ics/pythonUtils/checkPassword.py", param};
-
 
     }
 }

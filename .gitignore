@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+./data/tempImage/*
+
+
 ### STS ###
 .apt_generated
 .classpath

@@ -1,14 +1,25 @@
 package org.ics.utils.python;
 
+import jakarta.annotation.Resource;
+import org.ics.utils.ConfigGetter;
+import org.springframework.stereotype.Component;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public abstract class BasePythonRunUtil
 {
+    public static String condaPath = "C:\\Users\\chenzhen\\anaconda3\\envs\\pytouch\\python.exe";
+
     public static Integer SUCCESS = 0;
     public static Integer ERROR = -1;
+
+    @Resource
+    public ConfigGetter configGetter;
+
 
     public Map<String, Object> set(Map<String, Object> ret, Integer code)
     {
@@ -40,6 +51,8 @@ public abstract class BasePythonRunUtil
         Map<String, Object> ret = new HashMap<>();
         Process process = Runtime.getRuntime().exec(command);
         ArrayList<String> temp = handelPythonReturn(process.getInputStream());
+        temp.addAll(handelPythonReturn(process.getErrorStream()));
+
         // 数据为空
         if (temp.size() == 0)
             return set(ret, ERROR);
@@ -52,7 +65,8 @@ public abstract class BasePythonRunUtil
      * @Params [input 输入流]
      * @Return 返回读取到的数据
      **/
-    ArrayList<String> handelPythonReturn(final InputStream input){
+    ArrayList<String> handelPythonReturn(final InputStream input)
+    {
         ArrayList<String> ret = new ArrayList<>();
         Reader reader = new InputStreamReader(input);
         BufferedReader bf = new BufferedReader(reader);
