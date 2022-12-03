@@ -20,9 +20,13 @@ public class BulletScreenController extends BaseController
     @GetMapping("/list")
     public Map<String, Object> getBulletScreenList(@PathParam("page") Integer page, @PathParam("limit") Integer limit, @RequestHeader Map<String, String> headers)
     {
+        //todo 使用redis缓存数据
         Map<String, Object> ret = new HashMap<>();
         ArrayList<BulletScreen> data = bulletScreenService.getBulletScreenList(page, limit);
         Integer count = bulletScreenService.getCount();
         return setReturnState(ret, ReturnStates.success, new ReturnKV("data", data), new ReturnKV("count", count));
     }
+
+    //todo 发送弹幕
+    
 }
