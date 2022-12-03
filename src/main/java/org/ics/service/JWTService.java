@@ -6,6 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import org.springframework.context.event.EventPublicationInterceptor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -20,41 +21,45 @@ public class JWTService
      * @Params [id, username]
      * @Return 返回token串
      **/
-    public String createToken(long id, String username)
+    public String createToken(String username)
     {
         long now = System.currentTimeMillis();
         JWTCreator.Builder builder = JWT.create();
-        builder.withAudience(String.valueOf(id));
+        builder.withAudience(String.valueOf(username));
         builder.withIssuer("ICS");
         builder.withIssuedAt(new Date(now));
         builder.withExpiresAt(new Date(now + expiredTimeInterval));
-        builder.withClaim("username", username);
-
-        return builder.sign(Algorithm.HMAC256(id + username));
+        return builder.sign(Algorithm.HMAC256(username));
     }
 
     /**
      * @Description 验证token是否正确
-     * @Params [token, id, username]
-     * @Return 返回boolean
+     * @Params [token, username]
+     * @Return -2过期  -1不正确  0正确
      **/
-    public boolean verifyToken(String token, long id, String username)
+    public Integer verifyToken(String token, String username)
     {
         try
         {
-            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(id + username)).build();
+            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(username)).build();
             jwtVerifier.verify(token);
+            Date expiredTime = JWT.decode(token).getExpiresAt();
+            if (expiredTime.compareTo(new Date()) <= 0)
+            {
+                //过期
+                return -2;
+            }
         } catch (JWTVerificationException e)
         {
-            return false;
+            return -2;
         }
-        return true;
+        return 0;
     }
 
     /**
-     * @Description 获取token中的id
+     * @Description 获取token中的username
      * @Params [token]
-     * @Return 返回用户id
+     * @Return 返回用户username
      **/
     public String getAudience(String token)
     {
@@ -67,15 +72,5 @@ public class JWTService
             e.printStackTrace();
         }
         return audience;
-    }
-
-    /**
-     * @Description 获取token中的username
-     * @Params [token, name]
-     * @Return 返回解析的username
-     **/
-    public String getUsername(String token)
-    {
-        return JWT.decode(token).getClaim("username").asString();
     }
 }

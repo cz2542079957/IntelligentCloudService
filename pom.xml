@@ -45,6 +45,12 @@
             <artifactId>java-jwt</artifactId>
             <version>4.2.1</version>
         </dependency>
+        <!--        aspect-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>2.7.5</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

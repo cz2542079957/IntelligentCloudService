@@ -3,10 +3,11 @@ package org.ics.controller;
 import jakarta.annotation.Resource;
 import lombok.Data;
 import org.ics.service.AuthService;
+import org.ics.service.JWTService;
 import org.ics.utils.ConfigGetter;
+import org.ics.utils.HeadersChecker;
 import org.ics.utils.ReturnStates;
-import org.ics.utils.python.CheckPassword;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.ics.utils.python.ParsePasswordImage;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -14,10 +15,19 @@ import java.util.Map;
 @RestController
 public class BaseController
 {
-    @Resource
-    CheckPassword checkPassword;
+    //工具
     @Resource
     ConfigGetter configGetter;
+    @Resource
+    JWTService jwtService;
+    @Resource
+    HeadersChecker headersChecker;
+
+    //python 程序工具
+    @Resource
+    ParsePasswordImage parsePasswordImage;
+
+    //service
     @Resource
     AuthService authService;
 

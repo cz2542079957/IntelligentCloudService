@@ -2,12 +2,11 @@ package org.ics.utils.python;
 
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.io.*;
 import java.util.Map;
 
 @Component
-public class CheckPassword extends BasePythonRunUtil
+public class ParsePasswordImage extends BasePythonRunUtil
 {
 
     /**
