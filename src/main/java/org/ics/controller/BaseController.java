@@ -3,6 +3,7 @@ package org.ics.controller;
 import jakarta.annotation.Resource;
 import lombok.Data;
 import org.ics.service.AuthService;
+import org.ics.service.BulletScreenService;
 import org.ics.service.JWTService;
 import org.ics.utils.ConfigGetter;
 import org.ics.utils.HeadersChecker;
@@ -30,6 +31,8 @@ public class BaseController
     //service
     @Resource
     AuthService authService;
+    @Resource
+    BulletScreenService bulletScreenService;
 
     /**
      * @Description 无数据返回值构造器

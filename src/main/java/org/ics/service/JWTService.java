@@ -25,7 +25,7 @@ public class JWTService
     {
         long now = System.currentTimeMillis();
         JWTCreator.Builder builder = JWT.create();
-        builder.withAudience(String.valueOf(username));
+        builder.withAudience(username);
         builder.withIssuer("ICS");
         builder.withIssuedAt(new Date(now));
         builder.withExpiresAt(new Date(now + expiredTimeInterval));
@@ -41,17 +41,21 @@ public class JWTService
     {
         try
         {
+            System.out.println(token);
+            System.out.println(username);
             JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(username)).build();
             jwtVerifier.verify(token);
             Date expiredTime = JWT.decode(token).getExpiresAt();
             if (expiredTime.compareTo(new Date()) <= 0)
             {
+                System.out.println(expiredTime);
+                System.out.println(new Date());
                 //过期
                 return -2;
             }
         } catch (JWTVerificationException e)
         {
-            return -2;
+            return -1;
         }
         return 0;
     }
