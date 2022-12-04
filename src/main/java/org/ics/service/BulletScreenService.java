@@ -59,4 +59,28 @@ public class BulletScreenService extends BaseService
         }
         return ret;
     }
+
+    /**
+     * @Description 添加弹幕
+     * @Params [username, text]
+     * @Return 0成功  -1失败  -2被限制
+     **/
+    public Integer addBulletScreen(String username, String text)
+    {
+        // 发送频率限制
+        if (bufferedBulletScreenDao.checkAstrictUserSendBulletScreen(username))
+        {
+            //被限制
+            return -2;
+        }
+        //添加限制
+        bufferedBulletScreenDao.astrictUserSendBulletScreen(username);
+        long now = System.currentTimeMillis();
+        Integer res = bulletScreenDao.addBulletScreen(username, text, now);
+        if (res == 0)
+            return -1;
+        return 0;
+    }
+
+
 }

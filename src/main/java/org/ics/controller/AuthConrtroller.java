@@ -1,8 +1,10 @@
 package org.ics.controller;
 
+import jakarta.annotation.Resource;
 import org.ics.exception.DBException;
 import org.ics.model.User;
 import org.ics.utils.ReturnStates;
+import org.slf4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +20,7 @@ import java.util.Map;
 @RequestMapping("/ics/auth")
 public class AuthConrtroller extends BaseController
 {
+
 
     /**
      * @Description 注册
@@ -38,27 +41,15 @@ public class AuthConrtroller extends BaseController
             {
                 return setReturnState(ret, ReturnStates.authUserExist);
             }
-            String path = (String) configGetter.properties.get("tempImageDir"); //上传的图片存放位置
-            File dir = new File(path);
-            if (!dir.isDirectory() || !dir.exists())
-            {
-                //不存在文件，创建
-                if (!dir.mkdirs())
-                {
-                    return setReturnState(ret, ReturnStates.authDirCreateError);
-                }
-            }
-            String originName = file.getOriginalFilename();
-            String[] originNameSplitArray = originName.split("\\.");
-            String type = originNameSplitArray[originNameSplitArray.length - 1];
-            String fileName = username + "_" + System.currentTimeMillis() + "." + type;
 
-            // 将文件保存到指定路径的功能
-            FileOutputStream out = new FileOutputStream(path + fileName);
-            out.write(file.getBytes());
-            out.flush();
-            out.close();
-            String password = parsePasswordImage.run(path + fileName);  //通过python解析密码图像
+            String res = fileUtil.saveFile(file, 1, username);
+            if (res.equals("-1"))
+            {
+                //失败
+                return setReturnState(ret, ReturnStates.authDirCreateError);
+            }
+            //文件上传成功，res值为文件路径
+            String password = parsePasswordImage.run(res);  //通过python解析密码图像
             User user = new User(username, password);
             if (authService.addUser(user) == 0)
             {
@@ -96,27 +87,16 @@ public class AuthConrtroller extends BaseController
             {   //用户不存在
                 return setReturnState(ret, ReturnStates.authUserNotExist);
             }
-            String path = (String) configGetter.properties.get("tempImageDir"); //上传的图片存放位置
-            File dir = new File(path);
-            if (!dir.isDirectory() || !dir.exists())
-            {
-                //不存在文件，创建
-                if (!dir.mkdirs())
-                {
-                    return setReturnState(ret, ReturnStates.authDirCreateError);
-                }
-            }
-            String originName = file.getOriginalFilename();
-            String[] originNameSplitArray = originName.split("\\.");
-            String type = originNameSplitArray[originNameSplitArray.length - 1];
-            String fileName = username + "_" + System.currentTimeMillis() + "." + type;
 
-            // 将文件保存到指定路径的功能
-            FileOutputStream out = new FileOutputStream(path + fileName);
-            out.write(file.getBytes());
-            out.flush();
-            out.close();
-            String password = parsePasswordImage.run(path + fileName);  //通过python解析密码图像
+            //文件上传
+            String res = fileUtil.saveFile(file, 1, username);
+            if (res.equals("-1"))
+            {
+                //失败
+                return setReturnState(ret, ReturnStates.authDirCreateError);
+            }
+            //文件上传成功，res值为文件路径
+            String password = parsePasswordImage.run(res);  //通过python解析密码图像
 
             User user = new User(username, password);
             if (0 == authService.checkUser(user))
@@ -156,18 +136,18 @@ public class AuthConrtroller extends BaseController
         String token = headersChecker.getToken(headers);
         if (null == token)
         {
-            return setReturnState(ret, ReturnStates.authTokenLost);
+            return setReturnState(ret, ReturnStates.tokenLost);
         }
         Integer res = jwtService.verifyToken(token, username);
         if (res == -1)
         {
             // token 验证不通过
-            return setReturnState(ret, ReturnStates.authTokenError);
+            return setReturnState(ret, ReturnStates.tokenError);
         }
         if (res == -2)
         {
             // token 过期
-            return setReturnState(ret, ReturnStates.authTokenExpired);
+            return setReturnState(ret, ReturnStates.tokenExpired);
         }
         return setReturnState(ret, ReturnStates.success);
     }

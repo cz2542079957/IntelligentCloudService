@@ -16,4 +16,9 @@
         select count(*)
         from bulletScreen;
     </select>
+
+    <insert id="addBulletScreen">
+        insert into bulletScreen(username, text, createTime)
+        values (#{username}, #{text}, #{createTime});
+    </insert>
 </mapper>

@@ -2,6 +2,7 @@ package org.ics.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -20,7 +21,8 @@ import java.util.Arrays;
 @Component
 public class WebHistoryAspect
 {
-    private final Logger log = LoggerFactory.getLogger(WebHistoryAspect.class);
+    @Resource
+    private Logger log;
 
     @Pointcut("execution(public * org.ics.controller.*.*(..)))")
     public void webLog()

@@ -8,6 +8,7 @@ import org.ics.service.BulletScreenService;
 import org.ics.service.JWTService;
 import org.ics.utils.*;
 import org.ics.utils.python.ParsePasswordImage;
+import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -24,6 +25,10 @@ public class BaseController
     HeadersChecker headersChecker;
     @Resource
     Gson gson;
+    @Resource
+    FileUtil fileUtil;
+    @Resource
+    Logger log;
 
     //python 程序工具
     @Resource

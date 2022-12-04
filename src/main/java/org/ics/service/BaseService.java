@@ -11,7 +11,6 @@ public class BaseService
 {
     @Resource
     public AuthDao authDao;
-
     @Resource
     public BulletScreenDao bulletScreenDao;
 

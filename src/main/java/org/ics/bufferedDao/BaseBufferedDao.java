@@ -14,6 +14,7 @@ public class BaseBufferedDao
 
     public static String BulletScreenBufferName = "BulletScreen";
     public static String BulletScreenCountBufferName = "BulletScreenCount";
+    public static String AstrictUserSendBulletScreenBufferName = "AstrictUserSendBulletScreen";
 
 
 }
