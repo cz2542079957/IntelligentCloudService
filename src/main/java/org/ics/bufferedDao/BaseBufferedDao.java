@@ -16,5 +16,8 @@ public class BaseBufferedDao
     public static String BulletScreenCountBufferName = "BulletScreenCount";
     public static String AstrictUserSendBulletScreenBufferName = "AstrictUserSendBulletScreen";
 
+    public static String CommentBufferName = "Comment"; //前缀 还需要module
+    public static String CommentBufferCountName = "CommentCount";  //前缀 还需要module
+
 
 }

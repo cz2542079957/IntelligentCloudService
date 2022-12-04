@@ -5,6 +5,7 @@ import jakarta.annotation.Resource;
 import lombok.Data;
 import org.ics.service.AuthService;
 import org.ics.service.BulletScreenService;
+import org.ics.service.CommentService;
 import org.ics.service.JWTService;
 import org.ics.utils.*;
 import org.ics.utils.python.ParsePasswordImage;
@@ -39,6 +40,8 @@ public class BaseController
     AuthService authService;
     @Resource
     BulletScreenService bulletScreenService;
+    @Resource
+    CommentService commentService;
 
     /**
      * @Description 无数据返回值构造器

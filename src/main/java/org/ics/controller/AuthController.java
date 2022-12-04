@@ -1,24 +1,20 @@
 package org.ics.controller;
 
-import jakarta.annotation.Resource;
 import org.ics.exception.DBException;
 import org.ics.model.User;
 import org.ics.utils.ReturnStates;
-import org.slf4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/ics/auth")
-public class AuthConrtroller extends BaseController
+public class AuthController extends BaseController
 {
 
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ics.dao.CommentDao">
+    <select id="getCommentList" resultType="org.ics.model.Comment">
+        select *
+        from comment
+        where module = #{module}
+        order by createTime desc
+        limit #{offset} , #{limit}
+
+    </select>
+
+    <select id="getCommentCount" resultType="java.lang.Integer">
+        select count(*)
+        from comment
+        where module = #{module}
+    </select>
+</mapper>

@@ -13,11 +13,11 @@ public class BufferedBulletScreenDao extends BaseBufferedDao
     public ArrayList<BulletScreen> getBulletScreenList(Integer offset, Integer limit)
     {
         ArrayList<BulletScreen> ret = null;
-        StringBuilder key = new StringBuilder();
-        key.append(offset);
-        key.append("_");
-        key.append(limit);
-        String data = jedisUtil.getHashValueCheckExpiration(BulletScreenBufferName, key.toString());
+        StringBuilder field = new StringBuilder();
+        field.append(offset);
+        field.append("_");
+        field.append(limit);
+        String data = jedisUtil.getHashValueCheckExpiration(BulletScreenBufferName, field.toString());
         if (null != data)
             ret = gson.fromJson(data, ArrayList.class);
         return ret;
