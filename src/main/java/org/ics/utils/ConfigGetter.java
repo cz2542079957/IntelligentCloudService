@@ -12,7 +12,7 @@ public class ConfigGetter
 
     public ConfigGetter()
     {
-        String path = "src/main/resources/application.properties";
+        String path = "src/main/resources/application.yml";
         try
         {
             InputStream inputStream = new BufferedInputStream(new FileInputStream(path));

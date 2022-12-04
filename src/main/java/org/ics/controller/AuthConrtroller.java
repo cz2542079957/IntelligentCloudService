@@ -65,12 +65,10 @@ public class AuthConrtroller extends BaseController
                 // 添加失败
                 throw new DBException("添加用户失败");
             }
-            Integer id = user.getId();  // 获取id
             //返回的数据
             Map<String, Object> data = new HashMap<>();
             data.put("password", password);
             data.put("token", jwtService.createToken(username));
-            data.put("id", id);
             //打包返回数据
             return setReturnState(ret, ReturnStates.success, data);
         } catch (IOException e)
@@ -141,6 +139,10 @@ public class AuthConrtroller extends BaseController
         }
     }
 
+    /**
+     * @Description token登录，用于自动登录
+     * @Params [req, headers]
+     **/
     @PostMapping("/signinByToken")
     public Map<String, Object> signinByToken(@RequestBody Map<String, Object> req, @RequestHeader Map<String, String> headers)
     {

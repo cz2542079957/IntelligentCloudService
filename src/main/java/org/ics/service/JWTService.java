@@ -41,15 +41,11 @@ public class JWTService
     {
         try
         {
-            System.out.println(token);
-            System.out.println(username);
             JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(username)).build();
             jwtVerifier.verify(token);
             Date expiredTime = JWT.decode(token).getExpiresAt();
             if (expiredTime.compareTo(new Date()) <= 0)
             {
-                System.out.println(expiredTime);
-                System.out.println(new Date());
                 //过期
                 return -2;
             }

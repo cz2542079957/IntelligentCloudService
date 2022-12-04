@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/ics?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: cz2002610
+  data:
+    redis:
+      port: 6379
+      host: 127.0.0.1
+      jedis:
+        pool:
+          max-idle: 6
+          max-active: 10
+          min-idle: 2
+      timeout: 2000
+      password: cz
+
+server:
+  port: 4077
+
+
+basePythonFilePath: C:\\Users\\chenzhen\\Desktop\\CODING\\IntelligentCloudService\\src\\main\\resources\\org\\ics\\pythonUtils\\
+tempImageDir: ./data/tempImage/
+

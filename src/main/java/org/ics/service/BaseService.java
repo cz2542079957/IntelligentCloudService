@@ -1,6 +1,7 @@
 package org.ics.service;
 
 import jakarta.annotation.Resource;
+import org.ics.bufferedDao.BufferedBulletScreenDao;
 import org.ics.dao.AuthDao;
 import org.ics.dao.BulletScreenDao;
 import org.springframework.stereotype.Service;
@@ -13,5 +14,8 @@ public class BaseService
 
     @Resource
     public BulletScreenDao bulletScreenDao;
+
+    @Resource
+    public BufferedBulletScreenDao bufferedBulletScreenDao;
 
 }

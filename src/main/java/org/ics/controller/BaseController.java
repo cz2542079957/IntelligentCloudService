@@ -1,13 +1,12 @@
 package org.ics.controller;
 
+import com.google.gson.Gson;
 import jakarta.annotation.Resource;
 import lombok.Data;
 import org.ics.service.AuthService;
 import org.ics.service.BulletScreenService;
 import org.ics.service.JWTService;
-import org.ics.utils.ConfigGetter;
-import org.ics.utils.HeadersChecker;
-import org.ics.utils.ReturnStates;
+import org.ics.utils.*;
 import org.ics.utils.python.ParsePasswordImage;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +22,8 @@ public class BaseController
     JWTService jwtService;
     @Resource
     HeadersChecker headersChecker;
+    @Resource
+    Gson gson;
 
     //python 程序工具
     @Resource
