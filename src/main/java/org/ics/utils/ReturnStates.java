@@ -3,6 +3,7 @@ package org.ics.utils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.EscapedErrors;
 
 @Getter
 @AllArgsConstructor
@@ -42,8 +43,15 @@ public enum ReturnStates
 
     bsAddBulletScreenAstrict(120301, "请稍后再发送弹幕哦", ReturnStatesType.warning),
 
-    bsAddBulletScreenError(120401, "服务器异常", ReturnStatesType.error),
+    bsAddBulletScreenError(120401, "服务器数据库异常", ReturnStatesType.error),
 
+
+    commentParamsLost(130101, "请求参数缺失", ReturnStatesType.error),
+
+
+    commentAddCommentAstrict(130301, "请稍后再发表评论哦", ReturnStatesType.warning),
+
+    commentAddCommentError(130401, "服务器数据库异常", ReturnStatesType.error),
 
     ;
 

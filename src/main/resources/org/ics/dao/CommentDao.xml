@@ -17,4 +17,9 @@
         from comment
         where module = #{module}
     </select>
+
+    <insert id="addComment">
+        insert into comment(username, text, module, createTime)
+        values (#{username}, #{text}, #{module}, #{createTime});
+    </insert>
 </mapper>

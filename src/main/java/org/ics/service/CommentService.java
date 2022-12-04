@@ -56,4 +56,27 @@ public class CommentService extends BaseService
         }
         return null;
     }
+
+    /**
+     * @Description 添加评论
+     * @Params [username, text, module]
+     * @Return 0成功  -1失败  -2被限制
+     **/
+    public Integer addComment(String username, String text, Integer module)
+    {
+        //查看是否被限制
+        if (bufferedCommentDao.checkAstrictUserSendComment(username, module))
+        {
+            return -2;
+        }
+        //添加限制
+        bufferedCommentDao.astrictUserSendComment(username, module);
+        long now = System.currentTimeMillis();
+        Integer res = commentDao.addComment(username, text, module, now);
+        if (res == 0)
+        {
+            return -1;
+        }
+        return 0;
+    }
 }

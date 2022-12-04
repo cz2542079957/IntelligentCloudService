@@ -12,4 +12,7 @@ public interface CommentDao
     ArrayList<Comment> getCommentList(@Param("module") Integer module, @Param("offset") Integer offset, @Param("limit") Integer limit);
 
     Integer getCommentCount(@Param("module") Integer module);
+
+    Integer addComment(@Param("username") String username, @Param("text") String text, @Param("module") Integer module, @Param("createTime") long createTime);
+
 }

@@ -1,6 +1,5 @@
 package org.ics.bufferedDao;
 
-import org.apache.ibatis.annotations.Param;
 import org.ics.model.Comment;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +31,7 @@ public class BufferedCommentDao extends BaseBufferedDao
     {
         try
         {
-            Integer ret = Integer.valueOf(jedisUtil.getStringValueCheckExpiration(CommentBufferCountName + module));
+            Integer ret = Integer.valueOf(jedisUtil.getStringValueCheckExpiration(CommentBufferCountBufferName + module));
             return ret;
         } catch (NumberFormatException e)
         {
@@ -42,7 +41,24 @@ public class BufferedCommentDao extends BaseBufferedDao
 
     public Integer setCommentCount(Integer module, Integer count)
     {
-        jedisUtil.setStringValueWithExpiration(CommentBufferCountName + module, 30, String.valueOf(count));
+        jedisUtil.setStringValueWithExpiration(CommentBufferCountBufferName + module, 30, String.valueOf(count));
         return 0;
+    }
+
+    public boolean checkAstrictUserSendComment(String username, Integer module)
+    {
+        String res = jedisUtil.getHashValueCheckExpiration(AstrictrUserSendCommentBufferName + module, username);
+        if (null != res)
+        {
+            //说明还在限制范围内
+            return true;
+        }
+        return false;
+    }
+
+    public void astrictUserSendComment(String username, Integer module)
+    {
+        long ttl = 10;  // 默认限制时间为10s
+        jedisUtil.setHashValueWithExpiration(AstrictrUserSendCommentBufferName + module, username, true, ttl);
     }
 }

@@ -2,7 +2,6 @@ package org.ics.bufferedDao;
 
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
-import jakarta.annotation.Resources;
 import org.ics.utils.JedisUtil;
 
 public class BaseBufferedDao
@@ -17,7 +16,8 @@ public class BaseBufferedDao
     public static String AstrictUserSendBulletScreenBufferName = "AstrictUserSendBulletScreen";
 
     public static String CommentBufferName = "Comment"; //前缀 还需要module
-    public static String CommentBufferCountName = "CommentCount";  //前缀 还需要module
+    public static String CommentBufferCountBufferName = "CommentCount";  //前缀 还需要module
+    public static String AstrictrUserSendCommentBufferName = "AstrictrUserSendComment"; //前缀 还需要后加module
 
 
 }
