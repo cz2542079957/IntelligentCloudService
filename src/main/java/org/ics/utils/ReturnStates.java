@@ -3,7 +3,7 @@ package org.ics.utils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.EscapedErrors;
+
 
 @Getter
 @AllArgsConstructor
@@ -20,11 +20,13 @@ public enum ReturnStates
     9.未知错误（一般错误）
 
      */
+    //常见基本类型
     success(0, "", ReturnStatesType.success),
     tokenError(11, "登录凭证不正确，请重新登录", ReturnStatesType.error),
     tokenExpired(12, "登录凭证已过期，请重新登录", ReturnStatesType.error),
     tokenLost(13, "登录凭证缺失", ReturnStatesType.error),
 
+    //auth 模块错误错误类型
     authUsernameInvalid(110101, "用户名应为4~24位", ReturnStatesType.warning),
     authUsernameLost(110102, "参数错误", ReturnStatesType.error),
 
@@ -38,14 +40,14 @@ public enum ReturnStates
     authDirCreateError(110501, "服务器出错，请联系管理人员", ReturnStatesType.error),
     authIOError(110502, "服务器异常", ReturnStatesType.error),
 
-
+    //bulletScreen 错误类型
     bsParamsLost(120101, "请求参数错误", ReturnStatesType.error),
 
     bsAddBulletScreenAstrict(120301, "请稍后再发送弹幕哦", ReturnStatesType.warning),
 
     bsAddBulletScreenError(120401, "服务器数据库异常", ReturnStatesType.error),
 
-
+    // 评论模块错误类型
     commentParamsLost(130101, "请求参数缺失", ReturnStatesType.error),
 
 
@@ -53,6 +55,8 @@ public enum ReturnStates
 
     commentAddCommentError(130401, "服务器数据库异常", ReturnStatesType.error),
 
+
+    //图像处理、识别模块
     ;
 
 

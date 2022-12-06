@@ -5,7 +5,12 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.util.Map;
 
+
+/**
+ * @Description 通过python解析图片生成80位数字密码
+ **/
 @Component
+
 public class ParsePasswordImage extends BasePythonRunUtil
 {
 

@@ -75,6 +75,7 @@ public abstract class BasePythonRunUtil
         {
             while ((line = bf.readLine()) != null)
             {
+                System.out.println(line);
                 ret.add(line);
             }
             reader.close();
