@@ -8,6 +8,7 @@ import org.ics.service.BulletScreenService;
 import org.ics.service.CommentService;
 import org.ics.service.JWTService;
 import org.ics.utils.*;
+import org.ics.utils.python.CIFARPredict;
 import org.ics.utils.python.MNISTPredict;
 import org.ics.utils.python.ParsePasswordImage;
 import org.slf4j.Logger;
@@ -37,6 +38,8 @@ public class BaseController
     ParsePasswordImage parsePasswordImage;
     @Resource
     MNISTPredict mnistPredict;
+    @Resource
+    CIFARPredict cifarPredict;
 
 
     //service

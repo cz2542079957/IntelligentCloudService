@@ -65,4 +65,87 @@ public class ImagePredictController extends BaseController
             throw new RuntimeException(e);
         }
     }
+
+    @PostMapping("/lowCIFAR10")
+    public Map<String, Object> lowCIFAR10Predict(@RequestHeader Map<String, String> headers, @RequestParam("username") String username, @RequestParam("file") MultipartFile file)
+    {
+        Map<String, Object> ret = new HashMap<>();
+        //检查用户
+        if (!headersChecker.needValidToken(headers, username))
+        {
+            return setReturnState(ret, ReturnStates.tokenError);
+        }
+        //文件上传
+        String res = fileUtil.saveFile(file, 1, username);
+        if (res.equals("-1"))
+        {
+            //失败
+            return setReturnState(ret, ReturnStates.authDirCreateError);
+        }
+        //文件上传成功，res值为文件路径
+        try
+        {
+            res = cifarPredict.lowCIFAR10Predict(res);
+            return setReturnState(ret, ReturnStates.success, res);
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping("/highCIFAR10")
+    public Map<String, Object> highCIFAR10Predict(@RequestHeader Map<String, String> headers, @RequestParam("username") String username, @RequestParam("file") MultipartFile file)
+    {
+        Map<String, Object> ret = new HashMap<>();
+        //检查用户
+        if (!headersChecker.needValidToken(headers, username))
+        {
+            return setReturnState(ret, ReturnStates.tokenError);
+        }
+        //文件上传
+        String res = fileUtil.saveFile(file, 1, username);
+        if (res.equals("-1"))
+        {
+            //失败
+            return setReturnState(ret, ReturnStates.authDirCreateError);
+        }
+        //文件上传成功，res值为文件路径
+        try
+        {
+            res = cifarPredict.highCIFAR10Predict(res);
+            return setReturnState(ret, ReturnStates.success, res);
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping("/CIFAR100")
+    public Map<String, Object> CIFAR100Predict(@RequestHeader Map<String, String> headers, @RequestParam("username") String username, @RequestParam("file") MultipartFile file)
+    {
+        Map<String, Object> ret = new HashMap<>();
+        //检查用户
+        if (!headersChecker.needValidToken(headers, username))
+        {
+            return setReturnState(ret, ReturnStates.tokenError);
+        }
+        //文件上传
+        String res = fileUtil.saveFile(file, 1, username);
+        if (res.equals("-1"))
+        {
+            //失败
+            return setReturnState(ret, ReturnStates.authDirCreateError);
+        }
+        //文件上传成功，res值为文件路径
+        try
+        {
+            res = cifarPredict.CIFAR100Predict(res);
+            return setReturnState(ret, ReturnStates.success, res);
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

@@ -22,7 +22,7 @@ public class MNISTPredict extends BasePythonRunUtil
         command[0] = condaPath;
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "mnistLowPredict.py";
         //权重文件
-        command[2] = configGetter.properties.getProperty("baseModelFilePath") + "mnistLow.pt";
+        command[2] = configGetter.properties.getProperty("baseModelFilePath") + "lowMNIST.pt";
         //图片文件
         command[3] = imgPath;
         Map<String, Object> res = runCommand(command);
@@ -43,7 +43,7 @@ public class MNISTPredict extends BasePythonRunUtil
         command[0] = condaPath;
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "mnistHighPredict.py";
         //权重文件
-        command[2] = configGetter.properties.getProperty("baseModelFilePath") + "mnistHigh.pt";
+        command[2] = configGetter.properties.getProperty("baseModelFilePath") + "highMNIST.pt";
         //图片文件
         command[3] = imgPath;
         Map<String, Object> res = runCommand(command);
