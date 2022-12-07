@@ -1,8 +1,5 @@
 package org.ics;
-
-import ai.djl.MalformedModelException;
-import ai.djl.repository.zoo.ModelNotFoundException;
-import ai.djl.translate.*;
+ 
 import jakarta.annotation.Resource;
 import org.ics.utils.python.MNISTPredict;
 import org.mybatis.spring.annotation.MapperScan;
@@ -18,7 +15,7 @@ import java.io.*;
 public class IntelligentCloudServiceApplication
 {
 
-    public static void main(String[] args) throws ModelNotFoundException, MalformedModelException, IOException, TranslateException, InterruptedException
+    public static void main(String[] args) throws IOException, InterruptedException
     {
         SpringApplication.run(IntelligentCloudServiceApplication.class, args);
     }

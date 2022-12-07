@@ -57,6 +57,8 @@ public enum ReturnStates
 
 
     //图像处理、识别模块
+    predictParamsLost(140101, "请求错误，参数缺失", ReturnStatesType.error),
+
     ;
 
 
