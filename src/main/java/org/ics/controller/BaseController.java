@@ -8,10 +8,7 @@ import org.ics.service.BulletScreenService;
 import org.ics.service.CommentService;
 import org.ics.service.JWTService;
 import org.ics.utils.*;
-import org.ics.utils.python.CIFARPredict;
-import org.ics.utils.python.MNISTPredict;
-import org.ics.utils.python.ParsePasswordImage;
-import org.ics.utils.python.PoetryBuilder;
+import org.ics.utils.python.*;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +40,8 @@ public class BaseController
     CIFARPredict cifarPredict;
     @Resource
     PoetryBuilder poetryBuilder;
+    @Resource
+    PictureDefogging pictureDefogging;
 
 
     //service

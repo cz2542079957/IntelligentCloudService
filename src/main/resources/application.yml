@@ -19,7 +19,9 @@ spring:
 server:
   port: 4077
 
+
 baseModelFilePath: C:/Users/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/model/
 basePythonFilePath: C:/Users/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/org/ics/pythonUtils/
-tempImageDir: ./data/tempImage/
+tempImageDir: src/main/resources/static/tempImage/
+outputFileDir: src/main/resources/static/output/
 

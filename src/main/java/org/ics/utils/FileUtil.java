@@ -18,7 +18,7 @@ public class FileUtil
     Logger log;
 
 
-    private long tempImageExpiredTime = 3600000 * 24 * 3;  //3天后删除
+    private long tempImageExpiredTime = 3600000 * 24;  //1天后删除
 
     /**
      * @Description 文件保存
