@@ -22,7 +22,7 @@ public class ParsePasswordImage extends BasePythonRunUtil
     public String run(String imgPath) throws IOException
     {
         String[] command = new String[3];
-        command[0] = condaPath;
+        command[0] =configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "parsePasswordImage.py";
         command[2] = imgPath;
         Map<String, Object> res = runCommand(command);

@@ -19,7 +19,7 @@ public class MNISTPredict extends BasePythonRunUtil
     public String lowPredict(String imgPath) throws IOException
     {
         String[] command = new String[4];
-        command[0] = condaPath;
+        command[0] = configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "mnistLowPredict.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "lowMNIST.pt";
@@ -40,7 +40,7 @@ public class MNISTPredict extends BasePythonRunUtil
     public String highPredict(String imgPath) throws IOException
     {
         String[] command = new String[4];
-        command[0] = condaPath;
+        command[0] = configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "mnistHighPredict.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "highMNIST.pt";

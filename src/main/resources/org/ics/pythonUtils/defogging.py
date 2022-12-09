@@ -119,7 +119,7 @@ class FFA(nn.Module):
         return x + x1
 
 
-abs = os.getcwd() + '/'
+# abs = os.getcwd() + '/'
 
 
 def tensorShow(tensors, titles=['haze']):
@@ -137,8 +137,7 @@ gps = 3
 blocks = 19
 
 img = sys.argv[2]
-outputName = str(int(time.time() * 1000)) + ".png"
-output = abs + "src/main/resources/static/output/" + outputName
+output = sys.argv[3]
 
 model_dir = sys.argv[1]
 ckp = torch.load(model_dir)
@@ -157,4 +156,4 @@ with torch.no_grad():
     pred = net(haze1)
 ts = torch.squeeze(pred.clamp(0, 1).cpu())
 vutils.save_image(ts, output)
-print(outputName)
+print(output)

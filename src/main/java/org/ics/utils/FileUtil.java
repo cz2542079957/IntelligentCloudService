@@ -18,7 +18,8 @@ public class FileUtil
     Logger log;
 
 
-    private long tempImageExpiredTime = 3600000 * 24;  //1天后删除
+    private long tempImageExpiredTime = 3600000 * 2;  //2小时后删除
+    private long outputImageExpiredTime = 3600000 * 2;  //2小时后删除
 
     /**
      * @Description 文件保存
@@ -29,6 +30,7 @@ public class FileUtil
     public String saveFile(MultipartFile file, Integer pathMode, String... argvs)
     {
         tempImageGC();  //  清理
+        outputImageGC();
         switch (pathMode)
         {
             case 1:
@@ -118,6 +120,40 @@ public class FileUtil
             }
         }
     }
+
+    /**
+     * @Description 垃圾回收器
+     **/
+    private void outputImageGC()
+    {
+        //清除登录注册密码图像临时文件
+        String path = (String) configGetter.properties.get("outputFileDir"); //上传的图片存放位置
+        File dir = new File(path);
+        if (dir.exists() && dir.isDirectory())
+        {
+            File[] files = dir.listFiles();
+            try
+            {
+                long now = System.currentTimeMillis();
+                for (File temp : files)
+                {
+                    if (temp.isFile())
+                    {
+                        String name = temp.getName();
+                        String[] splitArray = name.split("\\.");
+                        splitArray = splitArray[splitArray.length - 2].split("_");
+                        long time = Long.parseLong(splitArray[splitArray.length - 1]);
+                        if (now - time >= outputImageExpiredTime)
+                            temp.delete();
+                    }
+                }
+            } catch (RuntimeException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     /**
      * @Description 获取目录 不存在就创建

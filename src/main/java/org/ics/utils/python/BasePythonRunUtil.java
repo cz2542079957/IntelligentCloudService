@@ -12,8 +12,6 @@ import java.util.Map;
 @Component
 public abstract class BasePythonRunUtil
 {
-    public static String condaPath = "C:\\Users\\chenzhen\\anaconda3\\envs\\pytouch\\python.exe";
-
     public static Integer SUCCESS = 0;
     public static Integer ERROR = -1;
 

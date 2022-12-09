@@ -42,8 +42,9 @@ public class JedisConfig
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMinIdle(minIdle);
         jedisPoolConfig.setMaxTotal(maxActive);
-
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
+        if (password.isEmpty())
+            password = null;
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
 
         logger.info("JedisPool连接成功:" + host + "\t" + port);
 

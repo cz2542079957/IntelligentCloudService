@@ -15,8 +15,7 @@ import java.io.*;
 public class IntelligentCloudServiceApplication
 {
 
-    public static void main(String[] args) throws IOException, InterruptedException
-    {
+    public static void main(String[] args) {
         SpringApplication.run(IntelligentCloudServiceApplication.class, args);
     }
 }

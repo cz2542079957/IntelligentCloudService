@@ -14,14 +14,14 @@ spring:
           max-active: 10
           min-idle: 2
       timeout: 2000
-      password: cz
+      password: cz2002610
 
 server:
   port: 4077
 
 
-baseModelFilePath: C:/Users/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/model/
-basePythonFilePath: C:/Users/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/org/ics/pythonUtils/
-tempImageDir: src/main/resources/static/tempImage/
-outputFileDir: src/main/resources/static/output/
-
+condaPath: /home/chenzhen/anaconda3/envs/pytorch/bin/python
+baseModelFilePath: /home/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/model/
+basePythonFilePath: /home/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/org/ics/pythonUtils/
+tempImageDir: /home/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/static/tempImage/
+outputFileDir: /home/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/static/output/
