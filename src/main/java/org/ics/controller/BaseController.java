@@ -42,6 +42,8 @@ public class BaseController
     PoetryBuilder poetryBuilder;
     @Resource
     PictureDefogging pictureDefogging;
+    @Resource
+    PictureSuperResolution pictureSuperResolution;
 
 
     //service
