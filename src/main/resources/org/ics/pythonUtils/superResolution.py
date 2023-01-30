@@ -109,7 +109,7 @@ class SRGAN(object):
         self.net = Generator(self.scale_factor)
         self.net.load_state_dict(torch.load(self.model_path))
         self.net.eval()
-        print('{} model, and classes loaded.'.format(self.model_path))
+        # print('{} model, and classes loaded.'.format(self.model_path))
 
     def detect_image(self, image):
         image = cvtColor(image)
@@ -133,3 +133,4 @@ if __name__ == "__main__":
     image = Image.open(img_path)
     r_image = srgan.detect_image(image)
     r_image.save(save_path)
+    print(save_path.split("/")[-1])

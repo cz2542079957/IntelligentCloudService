@@ -12,6 +12,8 @@ public class WebMvcConfig implements WebMvcConfigurer
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry)
     {
-        registry.addResourceHandler("/file/**").addResourceLocations("file:C:/Users/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/static/output");
+        registry.addResourceHandler("/file/**").addResourceLocations("file:C:/Users/chenzhen/Desktop/CODING/IntelligentCloudService/src/main/resources/static/output/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/output/");
+
     }
 }

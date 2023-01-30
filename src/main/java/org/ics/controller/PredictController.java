@@ -230,7 +230,7 @@ public class PredictController extends BaseController
         }
     }
 
-    @PostMapping("/superSolution")
+    @PostMapping("/superResolution")
     public Map<String, Object> superResolution(@RequestHeader Map<String, String> headers, @RequestParam("username") String username, @RequestParam("file") MultipartFile file)
     {
         Map<String, Object> ret = new HashMap<>();

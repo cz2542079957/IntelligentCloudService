@@ -52,7 +52,7 @@ public abstract class BasePythonRunUtil
         Process process = Runtime.getRuntime().exec(command);
         ArrayList<String> temp = handelPythonReturn(process.getInputStream());
         temp.addAll(handelPythonReturn(process.getErrorStream()));
-
+ 
         // 数据为空
         if (temp.size() == 0)
             return set(ret, ERROR);
