@@ -45,7 +45,6 @@ public class BaseController
     @Resource
     PictureSuperResolution pictureSuperResolution;
 
-
     //service
     @Resource
     AuthService authService;

@@ -4,6 +4,7 @@ from PIL import Image
 from torch import nn
 import math
 import sys
+import os
 
 
 class ResidualBlock(nn.Module):
@@ -109,7 +110,7 @@ class SRGAN(object):
         self.net = Generator(self.scale_factor)
         self.net.load_state_dict(torch.load(self.model_path))
         self.net.eval()
-        # print('{} model, and classes loaded.'.format(self.model_path))
+        print('{} model, and classes loaded.'.format(self.model_path))
 
     def detect_image(self, image):
         image = cvtColor(image)
@@ -128,9 +129,9 @@ class SRGAN(object):
 if __name__ == "__main__":
     model_path = sys.argv[1]
     img_path = sys.argv[2]
-    save_path = sys.argv[3]
+    output = sys.argv[3]
     srgan = SRGAN(model_path)
     image = Image.open(img_path)
     r_image = srgan.detect_image(image)
-    r_image.save(save_path)
-    print(save_path.split("/")[-1])
+    r_image.save(output)
+    print(output)

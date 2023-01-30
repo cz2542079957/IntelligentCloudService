@@ -12,7 +12,7 @@ public class PictureDefogging extends BasePythonRunUtil
     public String insideDefogging(String imgPath, String outputName) throws IOException
     {
         String[] command = new String[5];
-        command[0] = condaPath;
+        command[0] =configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "defogging.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "itsDefogging.pk";
@@ -24,6 +24,7 @@ public class PictureDefogging extends BasePythonRunUtil
         Map<String, Object> res = runCommand(command);
         if (res.containsKey("data"))
         {
+            res.put("data",  outputName);   //替换
             return (String) res.get("data");
         }
         return null;
@@ -32,7 +33,7 @@ public class PictureDefogging extends BasePythonRunUtil
     public String outsideDefogging(String imgPath, String outputName) throws IOException
     {
         String[] command = new String[5];
-        command[0] = condaPath;
+        command[0] =configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "defogging.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "otsDefogging.pk";
@@ -44,6 +45,7 @@ public class PictureDefogging extends BasePythonRunUtil
         Map<String, Object> res = runCommand(command);
         if (res.containsKey("data"))
         {
+            res.put("data",  outputName);   //替换
             return (String) res.get("data");
         }
         return null;

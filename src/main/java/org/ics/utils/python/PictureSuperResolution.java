@@ -11,7 +11,7 @@ public class PictureSuperResolution extends BasePythonRunUtil
     public String superResolution(String imgPath, String outputName) throws IOException
     {
         String[] command = new String[5];
-        command[0] = condaPath;
+        command[0] = configGetter.properties.getProperty("condaPath");
         //python文件
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "superResolution.py";
         //权重文件
@@ -24,6 +24,7 @@ public class PictureSuperResolution extends BasePythonRunUtil
         Map<String, Object> res = runCommand(command);
         if (res.containsKey("data"))
         {
+            res.put("data", outputName);
             return (String) res.get("data");
         }
         return null;

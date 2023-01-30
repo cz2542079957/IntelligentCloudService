@@ -15,7 +15,7 @@ public class CIFARPredict extends BasePythonRunUtil
     public String lowCIFAR10Predict(String imgPath) throws IOException
     {
         String[] command = new String[4];
-        command[0] = condaPath;
+        command[0] = configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "cifar10LowPredict.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "lowCIFAR10.pt";
@@ -36,7 +36,7 @@ public class CIFARPredict extends BasePythonRunUtil
     public String highCIFAR10Predict(String imgPath) throws IOException
     {
         String[] command = new String[4];
-        command[0] = condaPath;
+        command[0] = configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "cifar10HighPredict.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "highCIFAR10.pt";
@@ -57,7 +57,7 @@ public class CIFARPredict extends BasePythonRunUtil
     public String CIFAR100Predict(String imgPath) throws IOException
     {
         String[] command = new String[4];
-        command[0] = condaPath;
+        command[0] = configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "cifar100Predict.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "CIFAR100.pt";

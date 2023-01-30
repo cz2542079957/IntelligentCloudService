@@ -11,7 +11,7 @@ public class PoetryBuilder extends BasePythonRunUtil
     public String buildPoetry(String startText, String prefixText) throws IOException
     {
         String[] command = new String[6];
-        command[0] = condaPath;
+        command[0] = configGetter.properties.getProperty("condaPath");
         command[1] = configGetter.properties.getProperty("basePythonFilePath") + "poetry.py";
         //权重文件
         command[2] = configGetter.properties.getProperty("baseModelFilePath") + "poetry.pth";
